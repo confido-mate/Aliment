@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+<section class="py-5">
+    <div class="row shadow-lg align-items-md-center justify-content-md-center search-section p-4 m-4"
+         style="align-items: center; justify-content: center;">
+        <div class="col-md-4">
+            <img src="{% static 'images/breakfast.svg' %}" alt="">
+            <h1 class="text-center display-1 p-4">breakfast</h1>
+        </div>
+        <div class="col-md-8">
+            <form method="get" class="form">
+                <div>
+                    {% for field in search_form.form %}
+                    <div class="form-group">
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card container bg-transparent border border-0">
+        <div class="card-body">
+            <article class="">
+                <div class="grid-sm py-5">
+                    {% for recipe in recipes %}
+                    <div class="card card-recipe shadow-lg border border-0">
+                        {% if recipe.picture %}
+                        <img src="{{recipe.picture}}" class="card-img-top" alt="...">
+                        {% else %}
+                        {% endif %}
+                        <div class="card-body">
+                            <a href="{% url 'recipe-detail' recipe.id %}" class="btn">
+                                <h5 class="card-title" style="">{{recipe.title}}</h5>
+                            </a>
+
+                            <p class="card-text">{{recipe.description}}</p>
+
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-center">Search not found</p>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+        <div class="card-footer p-4 d-flex justify-content-evenly" style="padding: auto;">
+            <div class="previous">
+                {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn btn-outline-success p-2">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-success p-2">previous</a>
+                {% endif %}
+            </div>
+
+            <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} </p>
+
+            <div class="next">
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-success p-2">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"
+                   class="btn btn-outline-success p-2">last &raquo;</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock content %}

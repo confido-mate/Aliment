@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section cla>
+    <div class="card" style="max-width: 24rem; margin: 2rem auto;">
+        <div class="card-header text-center bg-success">
+            <h2 class="display-2 text-white">Sign up</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                {% for field in form %}
+                {{ field.label }}
+                {{ field }}
+                {{ field.help_text }}
+                {% endfor %}
+                </div>
+                <button class="btn btn-success" type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

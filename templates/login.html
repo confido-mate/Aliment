@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-4">
+    <div class="card" style="max-width: 24rem; margin: 2rem auto;">
+        <div class="card-header">
+            <h1 class="display-2 text-center">Sign in</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-floating">
+                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+    <a href="{% url 'signup' %}" class="card-link">Sign Up</a>
+  </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div class="card card-recipe-detail shadow-lg border border-0 rounded-0 grid-md">
+        <img src="{{recipe.picture}}" class="card-img-top rounded-0" alt="...">
+        <div class="card-body">
+            <h1 class="card-title">{{recipe.title}}</h1>
+            <p class="card-text">{{recipe.description}}</p>
+            {% if recipe.ingredients %}
+            <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapseIngredients"
+               role="button"
+               aria-expanded="false" aria-controls="collapseIngredients">
+                instructions
+            </a>
+            <div class="collapse card" id="collapseIngredients">
+                <ul class="list-group">
+                    {% for ingredient in ingredients %}
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        {{ingredient}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% if recipe.instructions %}
+        <a class="btn bg-ms bg-warning" data-bs-toggle="collapse" href="#collapseExample"
+           role="button"
+           aria-expanded="false" aria-controls="collapseExample">
+            instructions
+        </a>
+        <div class="collapse" id="collapseExample">
+            <ol class="list-group list-group-numbered">
+                {% for instruction in instructions %}
+                <li class="list-group-item">{{instruction}}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+        {% if recipe.hints %}
+        <a class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" href="#collapseHints"
+           role="button"
+           aria-expanded="false" aria-controls="collapseHints">
+            hints
+        </a>
+        <div class="collapse" id="collapseHints">
+            <div class="card card-body">
+                {% for hint in hints %}
+                <p>{{hint}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+</section>
+{% endblock content %}
