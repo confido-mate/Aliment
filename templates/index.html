@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block header %}
-<div class="text-white">
+<div class="p-4 m-4 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-        <h1 class="display-2">Food & Nourishment.</h1>
+        <h1 class="display-2 fst-italic">More Coming soon...</h1>
+        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
+            efficiently about what’s most interesting in this post’s contents.</p>
+        <p class="lead mb-0">
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'recipes' %}">Book</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'pantry' %}">Pantry</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'general-principles' %}">General Principles</a>
+        </p>
     </div>
 </div>
 {% endblock header %}
+
 {% block content %}
 <section class="row py-5">
     <div class="col-md-8">
@@ -15,13 +23,13 @@
             <p class="blog-post-meta">by <a href="#">fiducia</a></p>
             <div class="grid-sm py-5">
                 {% for recipe in object_list %}
-                <div class="card border border-0 shadow-lg bg-white">
+                <div class="card bg-dark text-white border border-0 shadow-lg">
                     {% if recipe.picture %}
                     <img src="{{recipe.picture}}" class="card-img-top" alt="...">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ recipe.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <h6 class="card-subtitle text-muted">{{recipe.category}}</h6>
                         <p class="card-text">{{ recipe.description}}</p>
                         <a href="{% url 'recipe-detail' recipe.pk %}" class="card-link">Cook</a>
                         <a href="#" class="card-link">Save</a>

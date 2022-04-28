@@ -37,14 +37,11 @@ class RecipeListView(ListView):
 # @login_required(login_url='/accounts/login/')
 def recipe_detail_view(request, recipe_pk):
     recipe = Recipe.objects.get(pk=recipe_pk)
-    ingredients = recipe.ingredients
-    instructions = recipe.instructions
-    hints = recipe.hints
     context = {
         'recipe': recipe,
-        'ingredients': ingredients.split('.'),
-        'instructions': instructions.split('.'),
-        'hints': hints.split('.'),
+        'ingredients': recipe.ingredients.split('.'),
+        'instructions': recipe.instructions.split('.'),
+        'hints': recipe.hints.split('.'),
     }
     return render(request, 'recipe_detail.html', context=context)
 
