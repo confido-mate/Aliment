@@ -6,48 +6,42 @@
 
 {% block content %}
 <section class="py-5">
-    <div class="row shadow-lg align-items-md-center justify-content-md-center search-section p-4 m-4"
-         style="align-items: center; justify-content: center;">
-        <div class="col-md-4">
-            <img src="{% static 'images/breakfast.svg' %}" alt="">
-            <h1 class="text-center display-1 p-4">breakfast</h1>
-        </div>
-        <div class="col-md-8">
-            <form method="get" class="form">
-                <div>
-                    {% for field in search_form.form %}
-                    <div class="form-group">
-                        {{ field.label }}
-                        {{ field }}
-                    </div>
-                    {% endfor %}
+    <div class="container bg-light shadow-lg search-section" style="margin: 4em auto; width: auto;">
+        <h5>Find</h5>
+        <form method="get" class="form">
+            <div>
+                {% for field in search_form.form %}
+                <div class="form-group ">
+                    {{ field.label }}
+                    {{ field }}
                 </div>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
 
     <div class="card bg-transparent border border-0">
         <div class="card-body bg-transparent">
-                <div class="grid-sm">
-                    {% for recipe in recipes %}
-                    <div class="card shadow-lg border border-0">
-                        {% if recipe.picture %}
-                        <img src="{{recipe.picture}}" class="card-img-top" alt="...">
-                        {% else %}
-                        {% endif %}
-                        <div class="card-body">
-                            <a href="{% url 'recipe-detail' recipe.id %}">
-                                <h5 class="card-title" style="">{{recipe.title}}</h5>
-                            </a>
-                            <p class="card-text">{{recipe.description}}</p>
-
-                        </div>
+            <div class="recipe-list">
+                {% for recipe in recipes %}
+                <div class="card border border-0" style="margin: 0 0 auto 0;">
+                    {% if recipe.picture %}
+                    <img src="{{recipe.picture}}" class="card-img-top" alt="...">
+                    {% else %}
+                    <img src="{% static 'images/barbecue.svg' %}" class="card-img-top " alt="..."
+        style="margin: 4em auto; max-width: 8em;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{recipe.title}}</h5>
+                        <p class="card-text">{{recipe.description}}</p>
+                        <a href="{% url 'recipe-detail' recipe.id %}" class="btn btn-outline-success">Start cooking</a>
                     </div>
-                    {% empty %}
-                    <p class="text-center">Search not found</p>
-                    {% endfor %}
                 </div>
+                {% empty %}
+                <p class="text-center">Search not found</p>
+                {% endfor %}
+            </div>
         </div>
         <div class="card-footer p-4 d-flex justify-content-evenly" style="padding: auto;">
             <div class="previous">

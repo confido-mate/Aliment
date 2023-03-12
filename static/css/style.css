@@ -1,0 +1,114 @@
+:root {
+     --cl-white: #FFF;
+     --cl-primary: #021416;
+     --cl-secondary: #EAB18D;
+     font-family: helvetica;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-image: url('images/Restaurant-Instagram-spaghetti.png';
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    color: white;
+    text-shadow: .2rem .2rem .5rem var(--primary-color);
+    padding: 2em;
+}
+
+/* main */
+main {
+   background: white;
+   padding: 2rem;
+}
+
+/* recipe card */
+
+
+aside {
+    background-image: url('static/images/vegetable-spice.jpg');
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    color: white;
+    text-shadow: .2rem .2rem .5rem var(--primary-color);
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    color: var(--cl-white);
+    background-color: var(--cl-primary);
+    padding: 2em;
+}
+
+.navbar {
+    border-bottom: 2px solid #EAB18D;
+    margin-bottom: 2rem;
+    align-content: flex-end;
+}
+
+.grid-md {
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, auto));
+}
+
+.grid-sm {
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, auto));
+}
+
+form {
+    margin: auto;
+}
+
+form label, input, select {
+    display: block;
+    padding: .5em;
+    margin: .5em 0em;
+    outline: var(--cl-primary);
+}
+
+.search-section {
+   color: var(--cl-primary);
+   background-color: var(--cl-secondary);
+}
+
+.search-form {
+    background-color: var(--cl-primary);
+    color: white;
+    text-shadow: .2em .2em .5em var(--cl-primary);
+    padding: 2rem;
+    margin: auto;
+    border-radius: 1rem;
+}
+
+.card {
+    margin-bottom: auto;
+}
+
+.card-recipe {
+   color: var(--cl-primary);
+   background: white;
+}
+
+.card-recipe-detail {
+   color: var(--cl-primary);
+   background: white;
+   margin: 4rem;
+}

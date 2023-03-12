@@ -39,9 +39,9 @@ def recipe_detail_view(request, recipe_pk):
     recipe = Recipe.objects.get(pk=recipe_pk)
     context = {
         'recipe': recipe,
-        'ingredients': recipe.ingredients.split('.'),
-        'instructions': recipe.instructions.split('.'),
-        'hints': recipe.hints.split('.'),
+        'ingredients': recipe.ingredients.all(),
+        'instructions': recipe.instructions.all(),
+        'hints': recipe.hints,
     }
     return render(request, 'recipe_detail.html', context=context)
 

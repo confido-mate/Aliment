@@ -1,46 +1,46 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block header %}
-<div class="p-4 m-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-        <h1 class="display-2 fst-italic">More Coming soon...</h1>
-        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
-            efficiently about what’s most interesting in this post’s contents.</p>
-        <p class="lead mb-0">
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'recipes' %}">Book</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'pantry' %}">Pantry</a>
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'general-principles' %}">General Principles</a>
-        </p>
+<div class=" container px-4 py-5 my-5 text-center shadow bg-light">
+    <h1 class="display-5 fw-bold">Food and naurishment</h1>
+    <div class="col-lg-6 mx-auto">
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{% url 'recipes' %}" class="btn btn-success btn-lg px-4 gap-3">Recipes</a>
+            <a href="{% url 'pantry' %}" class="btn btn-outline-success btn-lg px-4">General principles</a>
+            <a href="{% url 'general-principles' %}" class="btn btn-outline-success btn-lg px-4">Pantry</a>
+        </div>
     </div>
 </div>
 {% endblock header %}
 
 {% block content %}
+
 <section class="row py-5">
-    <div class="col-md-8">
+    <div class="col-md-9">
         <article class="blog-post">
             <h2 class="display-3">Meal of the Day</h2>
             <p class="blog-post-meta">by <a href="#">fiducia</a></p>
-            <div class="grid-sm py-5">
+            <div class="recipe-grid-list">
                 {% for recipe in object_list %}
-                <div class="card bg-dark text-white border border-0 shadow-lg">
+                <div class="recipe-meal-card card border border-0 shadow">
+                    <div class="card-header ">
+                        <div class="card-body">
+                            <a href="{% url 'recipe-detail' recipe.pk %}" class="card-link">
+                                <h5 class="card-title">{{ recipe.title }}</h5>
+                            </a>
+                            <p class="card-text">{{recipe.category}}</p>
+                        </div>
+                    </div>
                     {% if recipe.picture %}
                     <img src="{{recipe.picture}}" class="card-img-top" alt="...">
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ recipe.title }}</h5>
-                        <h6 class="card-subtitle text-muted">{{recipe.category}}</h6>
-                        <p class="card-text">{{ recipe.description}}</p>
-                        <a href="{% url 'recipe-detail' recipe.pk %}" class="card-link">Cook</a>
-                        <a href="#" class="card-link">Save</a>
-                    </div>
                 </div>
                 {% endfor %}
             </div>
         </article>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <aside class="position-sticky text-light bg-dark my-4 rounded" style="top: 2rem;">
             <div class="p-4 mb-3">
                 <h4>About</h4>
